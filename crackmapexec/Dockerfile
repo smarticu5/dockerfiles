@@ -9,4 +9,4 @@ RUN python3 setup.py install
 # This should fail, but it will build the database
 RUN cme smb 127.0.0.1 
 
-ENTRYPOINT ["cme"]
+CMD ["cme"]
