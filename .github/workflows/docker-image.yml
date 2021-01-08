@@ -15,7 +15,13 @@ jobs:
         working-directory: base_build
     steps:
     - uses: actions/checkout@v2
+    - name: Log in to Docker Hub
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_LOGIN_TOKEN }}
+      run: docker login -u smarticu5 -p $DOCKER_PASSWORD
     - name: Build the basebuild Docker image
       run: docker build . --file Dockerfile --tag smarticu5/basebuild:latest
+    - name: Upload basebuild Docker image
+      run: docker push smarticu5/basebuild:latest
     - name: Docker build the basebuild Python image
       run: docker build . --file Dockerfile-python --tag smarticu5/basebuild:python
