@@ -17,17 +17,14 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       run: docker login -u smarticu5 -p $DOCKER_PASSWORD
     - name: Build the basebuild Docker image
-      run: docker build . --file Dockerfile --tag smarticu5/basebuild:latest
-      working-directory: base_build
-    - name: Upload basebuild Docker image
-      run: docker push smarticu5/basebuild:latest
+      run: docker build . --file Dockerfile --tag smarticu5/basebuild:latest && docker push smarticu5/basebuild:latest
       working-directory: base_build
     - name: Docker build the basebuild Python image
-      run: docker build . --file Dockerfile-python --tag smarticu5/basebuild:python
+      run: docker build . --file Dockerfile-python --tag smarticu5/basebuild:python && docker push smarticu5/basebuild:python
       working-directory: base_build
     - name: Docker build the container-review-admin container
-      run: docker build . --tag smarticu5/container-review-admin
+      run: docker build . --tag smarticu5/container-review-admin && docker push smarticu5/container-review-admin
       working-directory: container-review-admin
     - name: Docker build the scoutsuite container
-      run: docker build . --tag smarticu5/scoutsuite
+      run: docker build . --tag smarticu5/scoutsuite && docker push smarticu5/scoutsuite
       working-directory: scoutsuite
