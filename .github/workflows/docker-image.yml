@@ -4,8 +4,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
-  paths:
-  - base_build/**
+    paths:
+    - base_build/**
 
 jobs:
   build:
