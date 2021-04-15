@@ -1,0 +1,21 @@
+# Testing this one just a couple of images for now
+name: Build container-review-admin
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+    - container-review-admin
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log in to Docker Hub
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      run: docker login -u smarticu5 -p $DOCKER_PASSWORD
+    - name: Docker build the container-review-admin container
+      run: docker build . --tag smarticu5/container-review-admin && docker push smarticu5/container-review-admin
+      working-directory: container-review-admin

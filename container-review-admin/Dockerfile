@@ -8,7 +8,10 @@ RUN apt-get update && \
     apt-transport-https \
     ca-certificates \
     curl \
+    dnsutils \
     gnupg-agent \
+    net-tools \ 
+    nmap \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 

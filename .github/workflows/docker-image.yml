@@ -4,8 +4,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -22,9 +20,3 @@ jobs:
     - name: Docker build the basebuild Python image
       run: docker build . --file Dockerfile-python --tag smarticu5/basebuild:python && docker push smarticu5/basebuild:python
       working-directory: base_build
-    - name: Docker build the container-review-admin container
-      run: docker build . --tag smarticu5/container-review-admin && docker push smarticu5/container-review-admin
-      working-directory: container-review-admin
-    - name: Docker build the scoutsuite container
-      run: docker build . --tag smarticu5/scoutsuite && docker push smarticu5/scoutsuite
-      working-directory: scoutsuite
