@@ -7,7 +7,7 @@ on:
     paths: 
     - container-review-admin/**
   schedule:
-  - cron: "* * * * 0"
+  - cron: "30 12 26 * *"
 jobs:
   build:
     runs-on: ubuntu-latest
