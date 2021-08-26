@@ -54,11 +54,11 @@ RUN curl -Lo rakkess.gz https://github.com/corneliusweig/rakkess/releases/downlo
 
 #Download Helm 2 
 RUN curl -OL https://get.helm.sh/helm-v2.16.11-linux-amd64.tar.gz && \
-    tar -xzvf helm-v2.14.3-linux-amd64.tar.gz && \
+    tar -xzvf helm-v2.16.11-linux-amd64.tar.gz && \
     mv linux-amd64/helm /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helm && \
     rm -rf linux-amd64 && \
-    rm -f helm-v2.14.3-linux-amd64.tar.gz
+    rm -f helm-v2.16.11-linux-amd64.tar.gz
 
 #Run forever
 CMD tail -f /dev/null
