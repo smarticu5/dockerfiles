@@ -2,8 +2,6 @@ FROM smarticu5/basebuild:python
 
 LABEL maintainer="Iain Smart <iain@iainsmart.co.uk>"
 
-RUN apt-get update && apt-get install -y git jq && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y -q upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get -y -q install \
@@ -11,9 +9,13 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     dnsutils \
+    git \
     gnupg-agent \
+    jq \
     net-tools \ 
     nmap \
+    python3 \
+    python3-pip \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
