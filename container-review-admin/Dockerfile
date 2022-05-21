@@ -1,4 +1,4 @@
-FROM smarticu5/basebuild:python
+FROM ubuntu:22.04
 
 LABEL maintainer="Iain Smart <iain@iainsmart.co.uk>"
 
