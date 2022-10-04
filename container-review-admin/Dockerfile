@@ -12,7 +12,7 @@ RUN apt-get update && \
     git \
     gnupg-agent \
     jq \
-    nc \
+    ncat \
     net-tools \ 
     nmap \
     python3 \
