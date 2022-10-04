@@ -50,5 +50,7 @@ RUN curl -LO https://get.helm.sh/helm-v2.14.0-linux-amd64.tar.gz && \
     rm helm-v2.14.0-linux-amd64.tar.gz && \
     rm -rf linux/
 
+RUN git clone https://github.com/smarticu5/HelmCharts.git
+
 #Run forever
 CMD tail -f /dev/null
