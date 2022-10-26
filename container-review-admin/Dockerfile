@@ -53,5 +53,8 @@ RUN curl -LO https://get.helm.sh/helm-v2.14.0-linux-amd64.tar.gz && \
 
 RUN git clone https://github.com/smarticu5/HelmCharts.git
 
+RUN curl -L https://github.com/quarkslab/kdigger/releases/download/v1.5.0/kdigger-linux-amd64 --output /usr/local/bin/kdigger && \
+    chmod +x /usr/local/bin/kdigger
+
 #Run forever
 CMD tail -f /dev/null
