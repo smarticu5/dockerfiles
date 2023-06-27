@@ -21,6 +21,16 @@ RUN apt-get update && \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Docker
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get update && \
+    apt-get install -y -q docker-ce docker-ce-cli && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install awscli
+RUN pip3 install awscli
+
 # Download and install Kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
 chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
