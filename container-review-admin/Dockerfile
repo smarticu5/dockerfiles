@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="Iain Smart <iain@iainsmart.co.uk>"
+LABEL maintainer="Iain Smart <i.smart94@gmail.com>"
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y -q upgrade && \
