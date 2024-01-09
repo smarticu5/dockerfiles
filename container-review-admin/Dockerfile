@@ -59,5 +59,6 @@ RUN git clone https://github.com/smarticu5/HelmCharts.git
 RUN curl -L https://github.com/quarkslab/kdigger/releases/download/v1.5.0/kdigger-linux-amd64 --output /usr/local/bin/kdigger && \
     chmod +x /usr/local/bin/kdigger
 
+RUN curl -L -o /tmp/crane.tar.gz https://github.com/google/go-containerregistry/releases/download/v0.17.0/go-containerregistry_Linux_x86_64.tar.gz && tar -C /usr/local/bin -xf /tmp/crane.tar.gz crane gcrane krane && rm /tmp/crane.tar.gz
 #Run forever
 CMD tail -f /dev/null
