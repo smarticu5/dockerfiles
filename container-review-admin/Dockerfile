@@ -54,6 +54,15 @@ RUN curl -LO https://get.helm.sh/helm-v2.14.0-linux-amd64.tar.gz && \
     rm helm-v2.14.0-linux-amd64.tar.gz && \
     rm -rf linux/
 
+# Add corednsenum
+
+RUN curl -L https://github.com/jpts/coredns-enum/releases/download/v0.2.4/coredns-enum_v0.2.4_linux_amd64.tar.gz -o /tmp/corednsenum.tar.gz && \
+cd /tmp && \
+tar -zxvf /tmp/corednsenum.tar.gz && \
+mv ./coredns-enum /usr/local/bin && \
+chmod 755 /usr/local/bin/coredns-enum && \ 
+rm /tmp/corednsenum.tar.gz README.md
+
 RUN git clone https://github.com/smarticu5/HelmCharts.git
 
 RUN curl -L https://github.com/quarkslab/kdigger/releases/download/v1.5.0/kdigger-linux-amd64 --output /usr/local/bin/kdigger && \
