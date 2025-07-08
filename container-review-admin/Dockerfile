@@ -17,6 +17,7 @@ RUN apt-get update && \
     nmap \
     python3 \
     python3-pip \
+    redis \
     software-properties-common \
     vim \
     && rm -rf /var/lib/apt/lists/*
@@ -69,6 +70,9 @@ RUN curl -L https://github.com/quarkslab/kdigger/releases/download/v1.5.0/kdigge
     chmod +x /usr/local/bin/kdigger
 
 RUN curl -L -o /tmp/crane.tar.gz https://github.com/google/go-containerregistry/releases/download/v0.20.6/go-containerregistry_Linux_x86_64.tar.gz && tar -C /usr/local/bin -xf /tmp/crane.tar.gz crane gcrane krane && rm /tmp/crane.tar.gz
+
+RUN curl -L -o /tmp/grpcurl.deb https://github.com/fullstorydev/grpcurl/releases/download/v1.9.3/grpcurl_1.9.3_linux_amd64.deb && dpkg -i /tmp/grpcurl.deb && rm -rf /tmp/grpcurl.deb
+
 
 RUN cp /bin/bash /bin/entrypoint
 
