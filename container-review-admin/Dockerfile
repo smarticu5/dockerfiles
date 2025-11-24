@@ -23,12 +23,12 @@ RUN apt-get update && \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Docker
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    add-apt-repository "deb [arch=$TARGETARCH] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    apt-get update && \
-    apt-get install -y -q docker-ce docker-ce-cli && \
-    rm -rf /var/lib/apt/lists/*
+# # Install Docker
+# RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+#     add-apt-repository "deb [arch=$TARGETARCH] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+#     apt-get update && \
+#     apt-get install -y -q docker-ce docker-ce-cli && \
+#     rm -rf /var/lib/apt/lists/*
 
 # Install AWSCLI
 RUN pip3 install --break-system-packages awscli
@@ -48,14 +48,6 @@ RUN curl -OL https://github.com/etcd-io/etcd/releases/download/v3.6.1/etcd-v3.6.
     rm -rf etcd-v3.6.1-linux-$TARGETARCH && \
     rm -f etcd-v3.6.1-linux-$TARGETARCH.tar.gz
 
-# Install Helm2
-
-RUN curl -LO https://get.helm.sh/helm-v2.14.0-linux-$TARGETARCH.tar.gz && \
-    tar -zxvf helm-v2.14.0-linux-$TARGETARCH.tar.gz && \
-    mv linux-$TARGETARCH/helm /usr/local/bin/helm && \
-    rm helm-v2.14.0-linux-$TARGETARCH.tar.gz && \
-    rm -rf linux/
-
 # Add corednsenum
 
 RUN curl -L https://github.com/jpts/coredns-enum/releases/download/v0.2.4/coredns-enum_v0.2.4_linux_$TARGETARCH.tar.gz -o /tmp/corednsenum.tar.gz && \
@@ -65,8 +57,6 @@ mv ./coredns-enum /usr/local/bin && \
 chmod 755 /usr/local/bin/coredns-enum && \ 
 rm /tmp/corednsenum.tar.gz README.md
 
-RUN git clone https://github.com/smarticu5/HelmCharts.git
-
 RUN curl -L https://github.com/quarkslab/kdigger/releases/download/v1.5.0/kdigger-linux-$TARGETARCH --output /usr/local/bin/kdigger && \
     chmod +x /usr/local/bin/kdigger
 
@@ -74,6 +64,10 @@ RUN curl -L -o /tmp/crane.tar.gz https://github.com/google/go-containerregistry/
 
 RUN curl -L -o /tmp/grpcurl.deb https://github.com/fullstorydev/grpcurl/releases/download/v1.9.3/grpcurl_1.9.3_linux_$TARGETARCH.deb && dpkg -i /tmp/grpcurl.deb && rm -rf /tmp/grpcurl.deb
 
+#Get crictl
+RUN curl -OL https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.30.1/crictl-v1.30.1-linux-$TARGETARCH.tar.gz && \
+tar -xzvf crictl-v1.30.1-linux-$TARGETARCH.tar.gz && mv crictl /usr/local/bin && chmod +x /usr/local/bin/crictl && \
+rm -f crictl-v1.30.1-linux-$TARGETARCH.tar.gz
 
 RUN cp /bin/bash /bin/entrypoint
 

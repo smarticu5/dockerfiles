@@ -22,3 +22,17 @@ jobs:
     - name: Docker build the container-review-admin container
       run: docker build . --tag smarticu5/container-review-admin && docker push smarticu5/container-review-admin
       working-directory: container-review-admin
+
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        platforms: linux/amd64,linux/arm64
+        context: "./container-review-admin"
+        push: true
+        tags: user/app:latest
