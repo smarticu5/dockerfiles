@@ -8,6 +8,7 @@ on:
     branches: [ master ]
     paths: 
     - container-review-admin/**
+    - .github/workflows/docker-build-container-review-admin.yml
   schedule:
   - cron: "30 12 26 * *"
 jobs:
@@ -30,4 +31,4 @@ jobs:
         platforms: linux/amd64,linux/arm64
         context: "./container-review-admin"
         push: true
-        tags: user/app:latest
+        tags: smarticu5/container-review-admin:latest
